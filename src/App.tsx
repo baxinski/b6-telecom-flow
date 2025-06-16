@@ -1,18 +1,34 @@
-import React from 'react'
+
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import AuthPage from './pages/AuthPage';
+import Equipment from './pages/Equipment';
+import ProtectedRoute from './components/ProtectedRoute';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">
-          B6 Telecom Flow
-        </h1>
-        <p className="text-gray-600">
-          Projeto React + TypeScript + Vite + Tailwind CSS
-        </p>
-      </div>
-    </div>
-  )
+    <AuthProvider>
+      <Router>
+        <div className="min-h-screen bg-gray-100">
+          <Navbar />
+          <Routes>
+            <Route path="/auth" element={<AuthPage />} />
+            <Route
+              path="/equipment"
+              element={
+                <ProtectedRoute>
+                  <Equipment />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/" element={<Navigate to="/equipment" replace />} />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;
