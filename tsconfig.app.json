@@ -1,0 +1,23 @@
+// tsconfig.app.json (na RAIZ do seu projeto)
+// Este arquivo deve conter as configurações do TypeScript para o seu código React
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+  // IMPORTANTE: NÃO INCLUA "references": [{ "path": "./tsconfig.node.json" }] AQUI
+}
