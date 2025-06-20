@@ -234,6 +234,48 @@ export type Database = {
           },
         ]
       }
+      equipamento_os: {
+        Row: {
+          data_utilizacao: string
+          equipamento_id: number
+          id: number
+          observacoes: string | null
+          os_id: number
+          tipo_utilizacao: string
+        }
+        Insert: {
+          data_utilizacao?: string
+          equipamento_id: number
+          id?: number
+          observacoes?: string | null
+          os_id: number
+          tipo_utilizacao: string
+        }
+        Update: {
+          data_utilizacao?: string
+          equipamento_id?: number
+          id?: number
+          observacoes?: string | null
+          os_id?: number
+          tipo_utilizacao?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "equipamento_os_equipamento_id_fkey"
+            columns: ["equipamento_id"]
+            isOneToOne: false
+            referencedRelation: "equipamento"
+            referencedColumns: ["id_equipamento"]
+          },
+          {
+            foreignKeyName: "equipamento_os_os_id_fkey"
+            columns: ["os_id"]
+            isOneToOne: false
+            referencedRelation: "ordem_servico"
+            referencedColumns: ["id_os"]
+          },
+        ]
+      }
       equipamento_serial_tracking: {
         Row: {
           data_registro: string | null
@@ -254,6 +296,105 @@ export type Database = {
           sn_01?: string
         }
         Relationships: []
+      }
+      estoque_tecnico: {
+        Row: {
+          data_atribuicao: string
+          equipamento_id: number
+          id: number
+          tecnico_id: number
+        }
+        Insert: {
+          data_atribuicao?: string
+          equipamento_id: number
+          id?: number
+          tecnico_id: number
+        }
+        Update: {
+          data_atribuicao?: string
+          equipamento_id?: number
+          id?: number
+          tecnico_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "estoque_tecnico_equipamento_id_fkey"
+            columns: ["equipamento_id"]
+            isOneToOne: true
+            referencedRelation: "equipamento"
+            referencedColumns: ["id_equipamento"]
+          },
+          {
+            foreignKeyName: "estoque_tecnico_tecnico_id_fkey"
+            columns: ["tecnico_id"]
+            isOneToOne: false
+            referencedRelation: "tecnico"
+            referencedColumns: ["id_tecnico"]
+          },
+        ]
+      }
+      historico_movimentacao_equipamento: {
+        Row: {
+          data_movimentacao: string
+          destino_id: number | null
+          destino_tipo: string | null
+          equipamento_id: number
+          id_historico: number
+          observacoes: string | null
+          origem_id: number | null
+          origem_tipo: string | null
+          os_relacionada_id: number | null
+          status_anterior: string | null
+          status_novo: string
+          tipo_movimentacao: string
+          usuario_responsavel_id: string | null
+        }
+        Insert: {
+          data_movimentacao?: string
+          destino_id?: number | null
+          destino_tipo?: string | null
+          equipamento_id: number
+          id_historico?: number
+          observacoes?: string | null
+          origem_id?: number | null
+          origem_tipo?: string | null
+          os_relacionada_id?: number | null
+          status_anterior?: string | null
+          status_novo: string
+          tipo_movimentacao: string
+          usuario_responsavel_id?: string | null
+        }
+        Update: {
+          data_movimentacao?: string
+          destino_id?: number | null
+          destino_tipo?: string | null
+          equipamento_id?: number
+          id_historico?: number
+          observacoes?: string | null
+          origem_id?: number | null
+          origem_tipo?: string | null
+          os_relacionada_id?: number | null
+          status_anterior?: string | null
+          status_novo?: string
+          tipo_movimentacao?: string
+          usuario_responsavel_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "historico_movimentacao_equipamento_equipamento_id_fkey"
+            columns: ["equipamento_id"]
+            isOneToOne: false
+            referencedRelation: "equipamento"
+            referencedColumns: ["id_equipamento"]
+          },
+          {
+            foreignKeyName: "historico_movimentacao_equipamento_os_relacionada_id_fkey"
+            columns: ["os_relacionada_id"]
+            isOneToOne: false
+            referencedRelation: "ordem_servico"
+            referencedColumns: ["id_os"]
+          },
+        ]
       }
       historico_os: {
         Row: {
