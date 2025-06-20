@@ -1,3 +1,4 @@
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from "path"
@@ -18,11 +19,6 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Configuração explícita para resolver o problema do tsconfig
-  esbuild: {
-    tsconfig: './tsconfig.json'
-  },
-  // Força o Vite a usar o tsconfig correto
   build: {
     target: 'esnext'
   }
