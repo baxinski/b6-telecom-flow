@@ -118,7 +118,7 @@ export type Database = {
           data_cadastro?: string | null
           data_mobwire?: string | null
           destino: string
-          id_devolucao?: number
+          id_devolucao?: never
           motivo?: string | null
           observacao?: string | null
           serial: string
@@ -129,7 +129,7 @@ export type Database = {
           data_cadastro?: string | null
           data_mobwire?: string | null
           destino?: string
-          id_devolucao?: number
+          id_devolucao?: never
           motivo?: string | null
           observacao?: string | null
           serial?: string
@@ -243,13 +243,13 @@ export type Database = {
         }
         Insert: {
           data_registro?: string | null
-          id_tracking?: number
+          id_tracking?: never
           observacoes?: string | null
           sn_01: string
         }
         Update: {
           data_registro?: string | null
-          id_tracking?: number
+          id_tracking?: never
           observacoes?: string | null
           sn_01?: string
         }
@@ -335,14 +335,14 @@ export type Database = {
         }
         Insert: {
           fabricante: string
-          id_modelo?: number
+          id_modelo?: never
           nome: string
           observacao?: string | null
           wifi_padrao?: string | null
         }
         Update: {
           fabricante?: string
-          id_modelo?: number
+          id_modelo?: never
           nome?: string
           observacao?: string | null
           wifi_padrao?: string | null
@@ -373,7 +373,7 @@ export type Database = {
           data_entrada?: string | null
           data_saida?: string | null
           flag_proc?: boolean | null
-          id_movimentacao?: number
+          id_movimentacao?: never
           mes_referencia?: string | null
           modelo_id?: number | null
           observacao?: string | null
@@ -390,7 +390,7 @@ export type Database = {
           data_entrada?: string | null
           data_saida?: string | null
           flag_proc?: boolean | null
-          id_movimentacao?: number
+          id_movimentacao?: never
           mes_referencia?: string | null
           modelo_id?: number | null
           observacao?: string | null
@@ -632,13 +632,13 @@ export type Database = {
         }
         Insert: {
           data_cadastro?: string | null
-          id_protocolo?: number
+          id_protocolo?: never
           justificativa?: string | null
           protocolo: string
         }
         Update: {
           data_cadastro?: string | null
-          id_protocolo?: number
+          id_protocolo?: never
           justificativa?: string | null
           protocolo?: string
         }
@@ -661,7 +661,7 @@ export type Database = {
           data_execucao?: string | null
           detalhes_tecnicos?: string | null
           equipamentos_instalados?: string | null
-          id_servico_manual?: number
+          id_servico_manual?: never
           os_id?: number | null
           recurso_tecnico?: string | null
         }
@@ -671,7 +671,7 @@ export type Database = {
           data_execucao?: string | null
           detalhes_tecnicos?: string | null
           equipamentos_instalados?: string | null
-          id_servico_manual?: number
+          id_servico_manual?: never
           os_id?: number | null
           recurso_tecnico?: string | null
         }

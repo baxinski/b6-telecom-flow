@@ -20,6 +20,14 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    target: 'esnext'
+    target: 'esnext',
+    rollupOptions: {
+      // Ensure compatibility with different platforms
+      external: [],
+    }
+  },
+  optimizeDeps: {
+    // Force pre-bundling of problematic dependencies
+    include: ['react', 'react-dom', 'react-router-dom']
   }
 }))
