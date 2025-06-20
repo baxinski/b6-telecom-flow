@@ -54,7 +54,7 @@ const Equipamentos = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-64">
         <div className="text-xl">Carregando equipamentos...</div>
       </div>
     )
@@ -62,26 +62,26 @@ const Equipamentos = () => {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-64">
         <div className="text-xl text-red-600">Erro: {error}</div>
       </div>
     )
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Gestão de Equipamentos</h1>
-          <p className="text-gray-600">Controle do estoque central e ciclo de vida dos equipamentos</p>
+          <p className="text-gray-600 mt-1">Controle do estoque central e ciclo de vida dos equipamentos</p>
         </div>
-        <div className="flex space-x-3">
-          <button className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors">
+        <div className="flex flex-col sm:flex-row gap-3">
+          <button className="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors">
             <Plus className="h-4 w-4 mr-2" />
             Novo Equipamento
           </button>
-          <button className="inline-flex items-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 transition-colors">
+          <button className="inline-flex items-center justify-center px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 transition-colors">
             <Upload className="h-4 w-4 mr-2" />
             Importar CSV
           </button>
@@ -90,8 +90,8 @@ const Equipamentos = () => {
 
       {/* Filtros e Busca */}
       <div className="bg-white rounded-lg shadow-md p-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <input
@@ -99,7 +99,7 @@ const Equipamentos = () => {
                 placeholder="Buscar por número série, modelo ou fabricante..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 w-full md:w-80"
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 w-full sm:w-80"
               />
             </div>
             
@@ -115,7 +115,7 @@ const Equipamentos = () => {
             </select>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-4">
             <span className="text-sm text-gray-600">
               {filteredEquipamentos.length} equipamentos
             </span>

@@ -11,13 +11,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex w-full">
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
       
-      <div className="flex-1 flex flex-col overflow-hidden lg:ml-0">
+      {/* Main content area */}
+      <div className="flex-1 flex flex-col min-w-0 lg:ml-64">
         {/* Top bar */}
-        <header className="bg-white shadow-sm border-b border-gray-200">
-          <div className="flex items-center justify-between h-16 px-6">
+        <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
+          <div className="flex items-center justify-between h-16 px-4 lg:px-6">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
               className="p-2 rounded-md text-gray-400 hover:text-gray-600 lg:hidden"
@@ -35,7 +36,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
         {/* Main content */}
         <main className="flex-1 overflow-auto">
-          <div className="p-6">
+          <div className="p-4 lg:p-6">
             {children}
           </div>
         </main>

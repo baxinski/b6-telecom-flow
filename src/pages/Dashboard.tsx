@@ -1,12 +1,13 @@
+
 import { Package, CheckCircle, Clock, Activity, Plus, Users, ArrowUpRight } from 'lucide-react'
 
 const Dashboard = () => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-7xl mx-auto">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold text-gray-900">Dashboard Executivo</h1>
-        <p className="text-gray-600">Visão estratégica em tempo real</p>
+        <p className="text-gray-600 mt-1">Visão estratégica em tempo real</p>
       </div>
 
       {/* Cards de Métricas */}
@@ -18,10 +19,10 @@ const Dashboard = () => {
             </div>
             <div className="ml-4 flex-1">
               <h3 className="text-sm font-medium text-gray-500 uppercase">Equipamentos Totais</h3>
-              <div className="flex items-center">
+              <div className="flex items-center mt-1">
                 <span className="text-3xl font-bold text-gray-900">0</span>
               </div>
-              <p className="text-sm text-green-600 flex items-center">
+              <p className="text-sm text-green-600 flex items-center mt-1">
                 <ArrowUpRight className="h-4 w-4 mr-1" />
                 +5% vs período anterior
               </p>
@@ -36,10 +37,10 @@ const Dashboard = () => {
             </div>
             <div className="ml-4 flex-1">
               <h3 className="text-sm font-medium text-gray-500 uppercase">OS Concluídas</h3>
-              <div className="flex items-center">
+              <div className="flex items-center mt-1">
                 <span className="text-3xl font-bold text-gray-900">0</span>
               </div>
-              <p className="text-sm text-green-600 flex items-center">
+              <p className="text-sm text-green-600 flex items-center mt-1">
                 <ArrowUpRight className="h-4 w-4 mr-1" />
                 +12% vs período anterior
               </p>
@@ -54,10 +55,10 @@ const Dashboard = () => {
             </div>
             <div className="ml-4 flex-1">
               <h3 className="text-sm font-medium text-gray-500 uppercase">OS Pendentes</h3>
-              <div className="flex items-center">
+              <div className="flex items-center mt-1">
                 <span className="text-3xl font-bold text-gray-900">0</span>
               </div>
-              <p className="text-sm text-red-600 flex items-center">
+              <p className="text-sm text-red-600 flex items-center mt-1">
                 <ArrowUpRight className="h-4 w-4 mr-1" />
                 -8% vs período anterior
               </p>
@@ -92,40 +93,35 @@ const Dashboard = () => {
               <div className="bg-blue-600 p-3 rounded-full mb-2">
                 <Package className="h-6 w-6 text-white" />
               </div>
-              <span className="font-medium text-gray-900">Novo Equipamento</span>
-              <span className="text-sm text-gray-600">Cadastrar novo equipamento</span>
+              <span className="font-medium text-gray-900 text-sm">Novo Equipamento</span>
+              <span className="text-xs text-gray-600 text-center">Cadastrar equipamento</span>
             </button>
 
             <button className="flex flex-col items-center p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors">
               <div className="bg-green-600 p-3 rounded-full mb-2">
                 <Plus className="h-6 w-6 text-white" />
               </div>
-              <span className="font-medium text-gray-900">Nova OS</span>
-              <span className="text-sm text-gray-600">Criar ordem de serviço</span>
+              <span className="font-medium text-gray-900 text-sm">Nova OS</span>
+              <span className="text-xs text-gray-600 text-center">Criar ordem de serviço</span>
             </button>
 
             <button className="flex flex-col items-center p-4 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors">
               <div className="bg-purple-600 p-3 rounded-full mb-2">
                 <Users className="h-6 w-6 text-white" />
               </div>
-              <span className="font-medium text-gray-900">Novo Técnico</span>
-              <span className="text-sm text-gray-600">Cadastrar técnico</span>
+              <span className="font-medium text-gray-900 text-sm">Novo Técnico</span>
+              <span className="text-xs text-gray-600 text-center">Cadastrar técnico</span>
             </button>
 
             <button className="flex flex-col items-center p-4 bg-orange-50 hover:bg-orange-100 rounded-lg transition-colors">
               <div className="bg-orange-600 p-3 rounded-full mb-2">
-                <ArrowUpRight className="h-6 w-6 text-white" />
+                <ArrowRightLeft className="h-6 w-6 text-white" />
               </div>
-              <span className="font-medium text-gray-900">Movimentação</span>
-              <span className="text-sm text-gray-600">Registrar movimentação</span>
+              <span className="font-medium text-gray-900 text-sm">Movimentação</span>
+              <span className="text-xs text-gray-600 text-center">Registrar movimentação</span>
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Footer do Sistema */}
-      <div className="text-center py-4">
-        <p className="text-sm text-gray-500">Sistema de Gestão B6 Telecom</p>
       </div>
     </div>
   )

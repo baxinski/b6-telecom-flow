@@ -26,7 +26,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
 
   return (
     <>
-      {/* Overlay para mobile */}
+      {/* Mobile overlay */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
@@ -37,17 +37,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       {/* Sidebar */}
       <div className={`
         fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out
-        lg:translate-x-0 lg:static lg:inset-0
-        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+        lg:translate-x-0 lg:static lg:z-30
+        ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
+        {/* Header */}
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
           <div className="flex items-center">
             <div className="bg-blue-600 text-white p-2 rounded-lg mr-3">
               <span className="font-bold text-lg">B6</span>
             </div>
-            <div>
+            <div className="hidden lg:block">
               <h1 className="text-lg font-bold text-gray-900">B6 Telecom</h1>
-              <p className="text-xs text-gray-500">Sistema de Gestão de Equipamentos e Serviços</p>
+              <p className="text-xs text-gray-500">Sistema de Gestão</p>
             </div>
           </div>
           <button 
@@ -58,7 +59,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
           </button>
         </div>
 
-        <nav className="mt-8 px-4 space-y-2">
+        {/* Navigation */}
+        <nav className="mt-6 px-4 space-y-2">
           {navigation.map((item) => (
             <NavLink
               key={item.name}
@@ -76,12 +78,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
                 }
               }}
             >
-              <item.icon className="mr-3 h-6 w-6" />
-              {item.name}
+              <item.icon className="mr-3 h-6 w-6 flex-shrink-0" />
+              <span>{item.name}</span>
             </NavLink>
           ))}
         </nav>
 
+        {/* Footer */}
         <div className="absolute bottom-0 w-full p-4 border-t border-gray-200">
           <div className="text-xs text-gray-500 text-center">
             <p>Versão 1.0.0</p>
