@@ -1,4 +1,4 @@
-// tsconfig.app.json (na RAIZ do seu projeto)
+ //tsconfig.app.json (na RAIZ do seu projeto)
 // Este arquivo deve conter as configurações do TypeScript para o seu código React
 {
   "compilerOptions": {
