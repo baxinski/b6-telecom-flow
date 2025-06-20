@@ -1,14 +1,9 @@
 
-import React, { useState } from 'react'
-import { Plus, Search, Shield, User } from 'lucide-react'
+import { Plus, Shield, User } from 'lucide-react'
 import { useTecnicos } from '@/hooks/useTecnicos'
 
 const Usuarios = () => {
   const { tecnicos } = useTecnicos()
-  const [searchTerm, setSearchTerm] = useState('')
-
-  // Por enquanto, vamos mostrar uma interface básica para usuários
-  // Futuramente implementaremos a gestão completa de usuários
 
   return (
     <div className="space-y-6">

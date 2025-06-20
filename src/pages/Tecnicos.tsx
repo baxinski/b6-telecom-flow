@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Plus, Search, Users, Package } from 'lucide-react'
 import { useTecnicos } from '@/hooks/useTecnicos'
 import { useEquipamentos } from '@/hooks/useEquipamentos'

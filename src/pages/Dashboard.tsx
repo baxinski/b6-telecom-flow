@@ -1,5 +1,4 @@
 
-import React from 'react'
 import { Package, Users, ClipboardList, AlertTriangle } from 'lucide-react'
 import { useEquipamentos } from '@/hooks/useEquipamentos'
 import { useTecnicos } from '@/hooks/useTecnicos'

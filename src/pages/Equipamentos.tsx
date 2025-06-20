@@ -1,18 +1,16 @@
 
-import React, { useState } from 'react'
-import { Plus, Search, Filter, Download, Upload } from 'lucide-react'
+import { useState } from 'react'
+import { Plus, Search, Download, Upload } from 'lucide-react'
 import { useEquipamentos } from '@/hooks/useEquipamentos'
 import { useTecnicos } from '@/hooks/useTecnicos'
 import EquipmentTable from '@/components/equipment/EquipmentTable'
 
 const Equipamentos = () => {
-  const { equipamentos, loading, error, refetch } = useEquipamentos()
+  const { equipamentos, loading, error } = useEquipamentos()
   const { tecnicos } = useTecnicos()
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('')
   const [selectedEquipments, setSelectedEquipments] = useState<number[]>([])
-  const [showNewEquipmentModal, setShowNewEquipmentModal] = useState(false)
-  const [showBulkActionsModal, setShowBulkActionsModal] = useState(false)
 
   const getTecnicoNome = (tecnicoId: number) => {
     const tecnico = tecnicos.find(t => t.id_tecnico === tecnicoId)
@@ -79,10 +77,7 @@ const Equipamentos = () => {
           <p className="text-gray-600">Controle do estoque central e ciclo de vida dos equipamentos</p>
         </div>
         <div className="flex space-x-3">
-          <button
-            onClick={() => setShowNewEquipmentModal(true)}
-            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
-          >
+          <button className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors">
             <Plus className="h-4 w-4 mr-2" />
             Novo Equipamento
           </button>
@@ -125,10 +120,7 @@ const Equipamentos = () => {
               {filteredEquipamentos.length} equipamentos
             </span>
             {selectedEquipments.length > 0 && (
-              <button
-                onClick={() => setShowBulkActionsModal(true)}
-                className="inline-flex items-center px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-medium rounded-md hover:bg-yellow-200 transition-colors"
-              >
+              <button className="inline-flex items-center px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-medium rounded-md hover:bg-yellow-200 transition-colors">
                 {selectedEquipments.length} selecionados
               </button>
             )}

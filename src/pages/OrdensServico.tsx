@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react'
-import { Plus, Search, Filter, Calendar, User } from 'lucide-react'
+import { useState } from 'react'
+import { Plus, Search, Calendar, User } from 'lucide-react'
 import { useOrdemServico } from '@/hooks/useOrdemServico'
 import { useTecnicos } from '@/hooks/useTecnicos'
 

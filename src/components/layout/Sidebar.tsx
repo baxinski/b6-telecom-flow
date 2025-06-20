@@ -1,5 +1,4 @@
 
-import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { 
   Package, 
@@ -8,7 +7,6 @@ import {
   Settings, 
   BarChart3,
   LogOut,
-  Menu,
   X
 } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext'
