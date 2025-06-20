@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   // Configuração explícita para resolver o problema do tsconfig
-  esbuild: {
+  //esbuild: {
     tsconfig: './tsconfig.json'
   },
   // Força o Vite a usar o tsconfig correto
