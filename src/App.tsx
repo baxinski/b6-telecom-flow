@@ -7,6 +7,7 @@ import Equipment from './pages/Equipment';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 
+// Test comment to verify saving functionality
 function App() {
   return (
     <AuthProvider>
