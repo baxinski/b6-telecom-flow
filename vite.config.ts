@@ -19,4 +19,12 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Configuração explícita para resolver o problema do tsconfig
+  esbuild: {
+    tsconfig: './tsconfig.json'
+  },
+  // Força o Vite a usar o tsconfig correto
+  build: {
+    target: 'esnext'
+  }
 }))
