@@ -1,5 +1,3 @@
-
-import React from 'react'
 import { Package, CheckCircle, Clock, Activity, Plus, Users, ArrowUpRight } from 'lucide-react'
 
 const Dashboard = () => {
