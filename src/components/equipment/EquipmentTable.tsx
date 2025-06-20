@@ -1,5 +1,6 @@
 
 import React, { useState, useMemo } from 'react'
+import { Edit, Trash2, History, ChevronDown, ChevronUp } from 'lucide-react'
 import type { Tables } from '@/integrations/supabase/types'
 
 type Equipamento = Tables<'equipamento'>
@@ -25,59 +26,77 @@ const EquipmentTableRow: React.FC<EquipmentTableRowProps> = ({
   isDeleting,
   getTecnicoNome
 }) => {
+  const getStatusBadgeColor = (status: string) => {
+    const colors = {
+      'Em Estoque Central': 'bg-blue-100 text-blue-800 border-blue-200',
+      'Com Técnico': 'bg-yellow-100 text-yellow-800 border-yellow-200',
+      'Instalado': 'bg-green-100 text-green-800 border-green-200',
+      'Em Manutenção': 'bg-orange-100 text-orange-800 border-orange-200',
+      'Defeituoso': 'bg-red-100 text-red-800 border-red-200',
+      'Usado': 'bg-gray-100 text-gray-800 border-gray-200'
+    }
+    return colors[status as keyof typeof colors] || 'bg-gray-100 text-gray-800 border-gray-200'
+  }
+
   return (
-    <tr className={`hover:bg-gray-50 ${isSelected ? 'bg-blue-50' : ''}`}>
+    <tr className={`hover:bg-gray-50 transition-colors duration-150 ${isSelected ? 'bg-blue-50' : ''}`}>
       <td className="px-6 py-4 whitespace-nowrap">
         <input
           type="checkbox"
           checked={isSelected}
           onChange={(e) => onSelect(e.target.checked)}
-          className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+          className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition-colors"
         />
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-        {equipment.numero_serie}
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-        {equipment.modelo || '-'}
-      </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-        {equipment.fabricante || '-'}
+      <td className="px-6 py-4 whitespace-nowrap">
+        <div className="text-sm font-semibold text-gray-900">{equipment.numero_serie}</div>
+        {equipment.codigo_barras && (
+          <div className="text-xs text-gray-500">{equipment.codigo_barras}</div>
+        )}
       </td>
       <td className="px-6 py-4 whitespace-nowrap">
-        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+        <div className="text-sm text-gray-900">{equipment.modelo || '-'}</div>
+        {equipment.fabricante && (
+          <div className="text-xs text-gray-500">{equipment.fabricante}</div>
+        )}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <span className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full border ${getStatusBadgeColor(equipment.status_equipamento)}`}>
           {equipment.status_equipamento}
         </span>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
         {equipment.localizacao_atual}
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
         {equipment.tecnico_responsavel_id ? getTecnicoNome(equipment.tecnico_responsavel_id) : '-'}
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
         {equipment.base_atendimento || '-'}
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-        <div className="flex space-x-2">
+        <div className="flex justify-end gap-2">
           <button
             onClick={() => onEdit(equipment)}
-            className="text-blue-600 hover:text-blue-900"
+            className="p-2 text-blue-600 hover:text-blue-900 hover:bg-blue-50 rounded-lg transition-all duration-150"
+            title="Editar"
           >
-            Editar
+            <Edit className="h-4 w-4" />
           </button>
           <button
             onClick={() => onShowHistory(equipment)}
-            className="text-green-600 hover:text-green-900"
+            className="p-2 text-green-600 hover:text-green-900 hover:bg-green-50 rounded-lg transition-all duration-150"
+            title="Histórico"
           >
-            Histórico
+            <History className="h-4 w-4" />
           </button>
           <button
             onClick={() => onDelete(equipment)}
             disabled={isDeleting}
-            className="text-red-600 hover:text-red-900 disabled:opacity-50"
+            className="p-2 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-lg transition-all duration-150 disabled:opacity-50"
+            title="Excluir"
           >
-            {isDeleting ? 'Excluindo...' : 'Excluir'}
+            <Trash2 className="h-4 w-4" />
           </button>
         </div>
       </td>
@@ -144,6 +163,22 @@ const EquipmentTable: React.FC<EquipmentTableProps> = ({
     }
   }
 
+  const SortableHeader = ({ field, children }: { field: string; children: React.ReactNode }) => (
+    <th 
+      className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors select-none"
+      onClick={() => handleSort(field)}
+    >
+      <div className="flex items-center gap-2">
+        {children}
+        {sortField === field && (
+          sortDirection === 'asc' ? 
+            <ChevronUp className="h-4 w-4" /> : 
+            <ChevronDown className="h-4 w-4" />
+        )}
+      </div>
+    </th>
+  )
+
   const isAllSelected = equipamentos.length > 0 && selectedEquipments.length === equipamentos.length
 
   return (
@@ -151,66 +186,33 @@ const EquipmentTable: React.FC<EquipmentTableProps> = ({
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-4 text-left">
               <input
                 type="checkbox"
                 checked={isAllSelected}
                 onChange={(e) => onSelectAll(e.target.checked)}
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded transition-colors"
               />
             </th>
-            <th 
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
-              onClick={() => handleSort('numero_serie')}
-            >
+            <SortableHeader field="numero_serie">
               Número Série
-              {sortField === 'numero_serie' && (
-                <span className="ml-1">{sortDirection === 'asc' ? '↑' : '↓'}</span>
-              )}
-            </th>
-            <th 
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
-              onClick={() => handleSort('modelo')}
-            >
-              Modelo
-              {sortField === 'modelo' && (
-                <span className="ml-1">{sortDirection === 'asc' ? '↑' : '↓'}</span>
-              )}
-            </th>
-            <th 
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
-              onClick={() => handleSort('fabricante')}
-            >
-              Fabricante
-              {sortField === 'fabricante' && (
-                <span className="ml-1">{sortDirection === 'asc' ? '↑' : '↓'}</span>
-              )}
-            </th>
-            <th 
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
-              onClick={() => handleSort('status_equipamento')}
-            >
+            </SortableHeader>
+            <SortableHeader field="modelo">
+              Modelo / Fabricante
+            </SortableHeader>
+            <SortableHeader field="status_equipamento">
               Status
-              {sortField === 'status_equipamento' && (
-                <span className="ml-1">{sortDirection === 'asc' ? '↑' : '↓'}</span>
-              )}
-            </th>
-            <th 
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
-              onClick={() => handleSort('localizacao_atual')}
-            >
+            </SortableHeader>
+            <SortableHeader field="localizacao_atual">
               Localização
-              {sortField === 'localizacao_atual' && (
-                <span className="ml-1">{sortDirection === 'asc' ? '↑' : '↓'}</span>
-              )}
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            </SortableHeader>
+            <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
               Técnico Responsável
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
               Base Atendimento
             </th>
-            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">
               Ações
             </th>
           </tr>
