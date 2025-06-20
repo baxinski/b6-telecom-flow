@@ -28,6 +28,13 @@ export default defineConfig(({ mode }) => ({
   },
   optimizeDeps: {
     // Force pre-bundling of problematic dependencies
-    include: ['react', 'react-dom', 'react-router-dom']
+    include: ['react', 'react-dom', 'react-router-dom'],
+    // Exclude Rollup native binaries from optimization
+    exclude: [
+      '@rollup/rollup-linux-x64-gnu',
+      '@rollup/rollup-win32-x64-msvc',
+      '@rollup/rollup-darwin-x64',
+      '@rollup/rollup-darwin-arm64'
+    ]
   }
 }))
