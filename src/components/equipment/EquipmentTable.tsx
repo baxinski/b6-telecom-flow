@@ -1,5 +1,8 @@
+
 import React, { useState, useMemo } from 'react'
-import { Equipamento } from '@/integrations/supabase/types'
+import type { Tables } from '@/integrations/supabase/types'
+
+type Equipamento = Tables<'equipamento'>
 
 interface EquipmentTableRowProps {
   equipment: Equipamento
