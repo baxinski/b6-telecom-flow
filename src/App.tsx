@@ -9,6 +9,7 @@ import Equipamentos from '@/pages/Equipamentos'
 import Tecnicos from '@/pages/Tecnicos'
 import OrdensServico from '@/pages/OrdensServico'
 import Usuarios from '@/pages/Usuarios'
+import Movimentacao from '@/pages/Movimentacao'
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
                   <Route path="/tecnicos" element={<Tecnicos />} />
                   <Route path="/ordens-servico" element={<OrdensServico />} />
                   <Route path="/usuarios" element={<Usuarios />} />
-                  <Route path="/movimentacao" element={<div className="p-6"><h1 className="text-2xl font-bold">Movimentação</h1><p>Página em desenvolvimento</p></div>} />
+                  <Route path="/movimentacao" element={<Movimentacao />} />
                 </Routes>
               </Layout>
             </ProtectedRoute>
