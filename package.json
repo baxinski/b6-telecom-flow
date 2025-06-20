@@ -1,5 +1,6 @@
 {
   "name": "b6-telecom-flow",
+  "build:dev": "vite build --mode development",
   "private": true,
   "version": "0.0.0",
   "type": "module",
