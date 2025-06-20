@@ -1,9 +1,10 @@
 
-import React from 'react'
 import { useEquipamentos } from '@/hooks/useEquipamentos'
+import { useAuth } from '@/contexts/AuthContext'
 
 const EquipmentPage = () => {
   const { equipamentos, loading, error } = useEquipamentos()
+  const { signOut } = useAuth()
 
   if (loading) {
     return (
@@ -24,9 +25,17 @@ const EquipmentPage = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">
-          Equipamentos
-        </h1>
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-800">
+            Equipamentos
+          </h1>
+          <button
+            onClick={signOut}
+            className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+          >
+            Sair
+          </button>
+        </div>
         
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <div className="px-6 py-4 bg-gray-50 border-b">
