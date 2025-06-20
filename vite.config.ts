@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => ({
   // Configuração explícita para resolver o problema do tsconfig
   //esbuild: {
     tsconfig: './tsconfig.json'
-  },
+  },//
   // Força o Vite a usar o tsconfig correto
   build: {
     target: 'esnext'
